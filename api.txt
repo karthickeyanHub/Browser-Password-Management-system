@@ -1,0 +1,56 @@
+<?php
+$dataFile = 'data.json';
+header('Content-Type: application/json');
+
+// Load data
+function readData() {
+    global $dataFile;
+    return json_decode(file_get_contents($dataFile), true);
+}
+
+// Save data
+function writeData($data) {
+    global $dataFile;
+    file_put_contents($dataFile, json_encode($data, JSON_PRETTY_PRINT));
+}
+
+// Handle request
+$method = $_SERVER['REQUEST_METHOD'];
+
+switch ($method) {
+    case 'GET':
+        echo json_encode(readData());
+        break;
+
+    case 'POST':
+        $input = json_decode(file_get_contents('php://input'), true);
+        $data = readData();
+        $data[] = $input;
+        writeData($data);
+        echo json_encode(["message" => "Added"]);
+        break;
+
+    case 'PUT':
+        parse_str($_SERVER['QUERY_STRING'], $params);
+        $index = $params['index'];
+        $input = json_decode(file_get_contents('php://input'), true);
+        $data = readData();
+        $data[$index] = $input;
+        writeData($data);
+        echo json_encode(["message" => "Updated"]);
+        break;
+
+    case 'DELETE':
+        parse_str($_SERVER['QUERY_STRING'], $params);
+        $index = $params['index'];
+        $data = readData();
+        array_splice($data, $index, 1);
+        writeData($data);
+        echo json_encode(["message" => "Deleted"]);
+        break;
+
+    default:
+        http_response_code(405);
+        echo json_encode(["error" => "Method not allowed"]);
+        break;
+}
