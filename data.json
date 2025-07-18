@@ -1,0 +1,198 @@
+[
+    {
+        "Name": "CCSF - Dev RP",
+        "URL": "https:\/\/asr--dev.sandbox.my.salesforce.com",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.ccsf.dev",
+        "Password": "Developer@12345",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - ASRTEST3",
+        "URL": "https:\/\/asr--asrtest3.sandbox.my.salesforce.com",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.asrtest3",
+        "Password": "Developer@1234",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - ASRTEST2",
+        "URL": "https:\/\/asr--asrtest2.sandbox.lightning.force.com\/lightning\/page\/home",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.asrtest2",
+        "Password": "Developer@12345",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - HotFix Test - BPP",
+        "URL": "https:\/\/asr--hotfixtest.sandbox.my.salesforce.com\/",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.ccsf.hotfixtest",
+        "Password": "Developer@12345",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - Hotfix Dev - BPP",
+        "URL": "https:\/\/asr--hotfixdev.sandbox.my.salesforce.com\/",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.ccsf.hotfixdev",
+        "Password": "Developer@1262472",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - QA Envi - RP - Working",
+        "URL": "https:\/\/asr--qa.sandbox.my.salesforce.com\/home\/home.jsp?sdtd=1",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.ccsf.rp.qa",
+        "Password": "Developer@1262472",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - Personal Envi - BPP",
+        "URL": "https:\/\/asr--karthickey.sandbox.my.salesforce.com\/",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.ccsf.karthickey",
+        "Password": "Developer@1262472",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - Owndata Backup - Data Migration",
+        "URL": "https:\/\/usgov2.owndata.com\/",
+        "UserName": "nitika.semwal@publicissapient.com",
+        "Password": "Sapient@12345",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF- production - prod",
+        "URL": "https:\/\/asr.my.salesforce.com\/",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com",
+        "Password": "Jani@1012",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - Personal Envi - RP",
+        "URL": "https:\/\/asr--karthickrp.sandbox.my.salesforce.com",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.dev3",
+        "Password": "Developer@12345",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF- SIT",
+        "URL": "https:\/\/asr--sit.sandbox.my.salesforce.com\/",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.ccsf.sit",
+        "Password": "Developer@12543",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - ASRTest3",
+        "URL": "https:\/\/asr--asrtest3.sandbox.my.salesforce.com\/",
+        "UserName": "sfdx@sfgov.org.asrtest3",
+        "Password": "Welcome@123",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - QA2",
+        "URL": "https:\/\/asr--qa2.sandbox.lightning.force.com\/",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.ccsf.qa2",
+        "Password": "Developer@123",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - Einstine Org",
+        "URL": "https:\/\/orgfarmcom-6ce-dev-ed.develop.lightning.force.com\/lightning\/page\/home",
+        "UserName": "epic.54db1728455030871@orgfarm.th",
+        "Password": "Developer@123",
+        "Description": "Created from Trailhead -  https:\/\/trailhead.salesforce.com\/content\/learn\/projects\/quick-start-einstein-copilot\/connect-your-flows-to-einstein-copilot"
+    },
+    {
+        "Name": "CCSF - Agent Force Org",
+        "URL": "https:\/\/d8y000000wjoeuae-dev-ed.develop.lightning.force.com\/lightning\/page\/home",
+        "UserName": "epic.orgfarm@salesforce.com",
+        "Password": "Developer@123",
+        "Description": "Created from  - https:\/\/trailhead.salesforce.com\/content\/learn\/projects\/quick-start-build-your-first-agent-with-agentforce\/configure-an-agentforce-service-agent"
+    },
+    {
+        "Name": "CCSF - Udhay Agent force",
+        "URL": "https:\/\/pu1730097923540.my.salesforce.com",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.agentforce",
+        "Password": "Developer@1234",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - ASRtest",
+        "URL": "https:\/\/asr--asrtest.sandbox.lightning.force.com",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.ccsf.asrtest",
+        "Password": "Developer@1234",
+        "Description": ""
+    },
+    {
+        "Name": "Agentforce Hakathon - Hakathon",
+        "URL": "https:\/\/pu1739982270515.lightning.force.com\/lightning\/n\/qbranch__Q_Home_Lightning",
+        "UserName": "karbalas3@teamsaturn.net",
+        "Password": "Developer@12345",
+        "Description": ""
+    },
+    {
+        "Name": "Learning - Omnistudio",
+        "URL": "https:\/\/sapient8.my.salesforce.com",
+        "UserName": "karthickeyan.balasubramani-g8gs@force.com",
+        "Password": "Developer@12345",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - ASRTest3 - Data Migration",
+        "URL": "https:\/\/asr--asrtest3.sandbox.my.salesforce.com\/",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.asrtest3.datamig",
+        "Password": "Developer@12345",
+        "Description": ""
+    },
+    {
+        "Name": "TDX Hakathon",
+        "URL": "https:\/\/orgfarm-418b97e32c-dev-ed.develop.my.salesforce.com\/",
+        "UserName": "karthickeyan.developer890@agentforce.com",
+        "Password": "Developer@12345",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF Smar UAT",
+        "URL": "https:\/\/asr--smartuat.sandbox.my.salesforce.com\/",
+        "UserName": "udhaykumar.vr@publicissapient.com.ccsf.smartuat",
+        "Password": "Bangalore1@2",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - Dev1",
+        "URL": "https:\/\/asr--dev1.sandbox.my.salesforce.com",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.ccsf.dev1",
+        "Password": "Developer@12345",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - Dev2",
+        "URL": "https:\/\/asr--dev2.sandbox.my.salesforce.com",
+        "UserName": "karthickeyan.balasubramani@publicissapient.com.ccsf.dev2",
+        "Password": "Developer@12345",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - prepost2",
+        "URL": "https:\/\/asr--prepost2.sandbox.my.salesforce.com\/",
+        "UserName": "sfdx@sfgov.org.prepost2",
+        "Password": "Welcome@123",
+        "Description": ""
+    },
+    {
+        "Name": "CCSF - prepost3",
+        "URL": "https:\/\/asr--prepost3.sandbox.lightning.force.com\/",
+        "UserName": "sfdx@sfgov.org.prepost3",
+        "Password": "Welcome@4321",
+        "Description": ""
+    },
+    {
+        "Name": "Code2Spec",
+        "URL": "https:\/\/sapientccsf-dev-ed.develop.my.salesforce.com",
+        "UserName": "udhayk999@agentforce.com",
+        "Password": "dataagent1@2",
+        "Description": ""
+    },
+    {
+        "Name": "AI Toeken generation",
+        "URL": "https:\/\/chat.psnext.info\/devsettings",
+        "UserName": "N\/A",
+        "Password": "N\/A",
+        "Description": ""
+    }
+]

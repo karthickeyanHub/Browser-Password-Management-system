@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Password Manager</title>
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --text: #333;
+      --card: #fff;
+      --accent: #3498db;
+      --accent-dark: #2980b9;
+    }
+
+    body.dark {
+      --bg: #1e1e1e;
+      --text: #ddd;
+      --card: #2e2e2e;
+      --accent: #4aa3ff;
+      --accent-dark: #1d75d0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 20px;
+      font-size: 12px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .tabs {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    .tab-button {
+      padding: 6px 14px;
+      background: #dcdcdc;
+      border: none;
+      cursor: pointer;
+      margin-right: 5px;
+      border-radius: 5px 5px 0 0;
+      font-size: 12px;
+    }
+
+    .tab-button.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      background: var(--card);
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 5px 5px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 8px;
+      border: 1px solid #ccc;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    td {
+      word-break: break-word;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    input[type="password"] {
+      width: 100%;
+      padding: 6px;
+      margin: 6px 0;
+      font-size: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    button, .passwordView{
+      padding: 6px 12px;
+      border: none;
+      background-color: var(--accent);
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    button:hover {
+      background-color: var(--accent-dark);
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: var(--card);
+      min-width: 100px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      font-size: 12px;
+      color: var(--text);
+      padding: 8px 12px;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4caf50;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 4px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 999;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    #themeToggle {
+      float: right;
+      margin-top: -30px;
+      margin-right: 10px;
+      font-size: 12px;
+    }
+
+    #searchInput {
+      padding: 6px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      width: 250px;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 200px;
+    }
+
+    th:nth-child(5),
+    td:nth-child(5) {
+      width: 250px;
+    }
+	.copy-icon {
+	  float: right;
+	  font-size: 12px;
+	  cursor: pointer;
+	  opacity: 0.6;
+	  margin-left: 6px;
+	}
+
+	.copy-icon:hover {
+	  opacity: 1;
+	}
+  </style>
+</head>
+<body>
+  <h2>Password Manager</h2>
+  <button id="themeToggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+  <div class="tabs">
+    <button class="tab-button active" onclick="switchTab('view')">🔍 View Entries</button>
+    <button class="tab-button" onclick="switchTab('add')">➕ Add / Edit Entry</button>
+  </div>
+
+  <div id="view" class="tab-content active">
+    <input type="text" id="searchInput" placeholder="🔎 Search by Name or Username" oninput="renderTable()" />
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>URL</th>
+          <th>User Name</th>
+          <th>Password</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="dataTable"></tbody>
+    </table>
+  </div>
+
+  <div id="add" class="tab-content">
+    <form id="dataForm">
+      <div class="form-group"><label>Name:</label><input type="text" id="name" required /></div>
+      <div class="form-group"><label>URL:</label><input type="url" id="url" required /></div>
+      <div class="form-group"><label>User Name:</label><input type="text" id="username" required /></div>
+      <div class="form-group"><label>Password:</label><input type="text" id="password" required /></div>
+      <div class="form-group"><label>Description:</label><input type="text" id="description" /></div>
+      <button type="submit">💾 Save</button>
+      <button type="button" onclick="resetForm()">Cancel</button>
+    </form>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let data = [];
+    let editingIndex = -1;
+
+    async function fetchData() {
+      const res = await fetch('api.php');
+      data = await res.json();
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('dataTable');
+      const filter = document.getElementById('searchInput').value.toLowerCase();
+      tbody.innerHTML = '';
+      data.forEach((item, index) => {
+        if (
+          item.Name.toLowerCase().includes(filter) ||
+          item.UserName.toLowerCase().includes(filter)
+        ) {
+          const rowId = `pw-${index}`;
+          tbody.innerHTML += `
+            <tr>
+              <td>${item.Name}</td>
+              <td>
+                <a href="${item.URL}" target="_blank">${item.URL}</a>
+				<span class="copy-icon" onclick="copyToClipboard('${item.URL}')">📋</span>
+               <!-- <button onclick="copyToClipboard('${item.URL}')" title="Copy URL">📋</button>-->
+              </td>
+              <td>
+                ${item.UserName}
+				<span class="copy-icon" onclick="copyToClipboard('${item.UserName}')">📋</span>
+                <!--<button onclick="copyToClipboard('${item.UserName}')" title="Copy Username">📋</button>-->
+              </td>
+              <td>
+                <span id="${rowId}">••••••</span>
+				<span class="copy-icon passwordView" onclick="togglePassword(${index}, '${item.Password}')" title="Show/Hide Password">👁</span>
+                <!--<button onclick="togglePassword(${index}, '${item.Password}')" title="Show/Hide Password">👁</button>-->
+				<span class="copy-icon" onclick="copyToClipboard('${item.Password}')">📋</span>
+                <!--<button onclick="copyToClipboard('${item.Password}')" title="Copy Password">📋</button>-->
+              </td>
+              <td>${item.Description}</td>
+              <td>
+                <div class="dropdown">
+                  <button>⋮</button>
+                  <div class="dropdown-content">
+                    <a onclick="editEntry(${index})">Edit</a>
+                    <a onclick="copyRow(${index})">Copy Row</a>
+                    <a onclick="deleteEntry(${index})">Delete</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          `;
+        }
+      });
+    }
+
+    function togglePassword(index, actualPassword) {
+      const span = document.getElementById(`pw-${index}`);
+      if (span.textContent === '••••••') {
+        span.textContent = actualPassword;
+      } else {
+        span.textContent = '••••••';
+      }
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => showToast("Copied!"));
+    }
+
+    function copyRow(index) {
+      const item = data[index];
+      const rowText = `Name: ${item.Name}
+URL: ${item.URL}
+Username: ${item.UserName}
+Password: ${item.Password}
+Description: ${item.Description}`;
+      copyToClipboard(rowText);
+    }
+
+    function editEntry(index) {
+      switchTab('add');
+      editingIndex = index;
+      const item = data[index];
+      document.getElementById('name').value = item.Name;
+      document.getElementById('url').value = item.URL;
+      document.getElementById('username').value = item.UserName;
+      document.getElementById('password').value = item.Password;
+      document.getElementById('description').value = item.Description;
+    }
+
+    async function deleteEntry(index) {
+      if (!confirm("Are you sure you want to delete this entry?")) return;
+      await fetch(`api.php?index=${index}`, { method: 'DELETE' });
+      showToast("Entry deleted ✅");
+      await fetchData();
+    }
+
+    document.getElementById('dataForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const entry = {
+        Name: document.getElementById('name').value,
+        URL: document.getElementById('url').value,
+        UserName: document.getElementById('username').value,
+        Password: document.getElementById('password').value,
+        Description: document.getElementById('description').value
+      };
+
+      if (editingIndex === -1) {
+        await fetch('api.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(entry)
+        });
+        showToast("Entry added ✅");
+      } else {
+        await fetch(`api.php?index=${editingIndex}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(entry)
+        });
+        showToast("Entry updated ✅");
+      }
+
+      resetForm();
+      switchTab('view');
+      await fetchData();
+    });
+
+    function resetForm() {
+      editingIndex = -1;
+      document.getElementById('dataForm').reset();
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelector(`[onclick="switchTab('${tabId}')"]`).classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark');
+      }
+      fetchData();
+    };
+  </script>
+</body>
+</html>
